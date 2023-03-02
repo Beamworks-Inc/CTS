@@ -4,8 +4,18 @@ enum class Role {
 }
 
 data class User(
-    val id: Long,
+    val id: Long? = null,
     val email: String,
     val password: String,
     val role: Role
 )
+
+data class UserDTO(
+    val email: String,
+    val password: String,
+    val role: Role
+){
+    fun toUser(): User{
+        return User(null, email, password, role)
+    }
+}
