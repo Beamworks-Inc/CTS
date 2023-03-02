@@ -1,3 +1,5 @@
+import {FormComponent} from "../pages/ProjectCreatePage";
+
 export type Role = 'PI' | 'REVIEWER' | 'RESEARCHER';
 
 export interface LoginForm{
@@ -38,12 +40,35 @@ export interface Researcher extends User{
     projectIds: number[];
 }
 
-export interface Project{
-    projectId: number;
-    name: string;
-    description: string;
-    pi: PI;
-    reviewers: Reviewer[];
-    researchers: Researcher;
+export interface Data{
+    id: number | null;
+    originalFile: File;
+    reportFile: File;
 }
 
+export interface InitProject{
+    name: string;
+    description: string;
+    data: Data[];
+    form: FormComponent;
+}
+
+export interface Project extends InitProject{
+    id: number;
+    pi:PI | null;
+    researcher: Researcher | null;
+    reviewer: Reviewer[];
+}
+
+export interface Alarm{
+    projectId: number;
+    piId: number;
+}
+
+export interface Review{
+    id: number;
+    projectId: number;
+    reviewerId: number;
+    dataId: number;
+    value: object;
+}

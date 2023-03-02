@@ -1,4 +1,5 @@
 import React from "react";
+import {Button} from "@mui/material";
 export interface FormComponent{
     type: string;
     name: string;
