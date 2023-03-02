@@ -3,8 +3,10 @@ import { FormComponent } from '../pages/ProjectCreatePage';
 export type Role = 'PI' | 'REVIEWER' | 'RESEARCHER';
 
 export interface LoginForm {
-  email: string;
-  password: string;
+  auth: {
+    username: string,
+    password: string
+  }
 }
 
 export interface RegisterForm {
