@@ -1,14 +1,7 @@
-import React from "react";
+import React from 'react';
 
-const PIProjectListPage=()=>{
+const PIProjectListPage = () => {
+  const onProjectSelect = () => {};
 
-    const onProjectSelect=()=>{
-
-    }
-
-    const onProjectAddButtonClick=()=>{
-
-    }
-
-
-}
+  const onProjectAddButtonClick = () => {};
+};

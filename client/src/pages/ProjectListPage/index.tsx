@@ -1,15 +1,11 @@
-import React from "react";
-import {User} from "../../Interface/User";
+import React from 'react';
+import { User } from '../../Interface/User';
 
 interface ProjectListPageProps {
-    user: User
+  user: User;
 }
-const ProjectListPage = (props : ProjectListPageProps) => {
-
-    const loadProjectList = () => {
-
-    }
-
-}
+const ProjectListPage = (props: ProjectListPageProps) => {
+  const loadProjectList = () => {};
+};
 
 export default ProjectListPage;

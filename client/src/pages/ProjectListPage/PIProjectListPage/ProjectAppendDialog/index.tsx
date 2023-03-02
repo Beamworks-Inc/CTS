@@ -1,17 +1,13 @@
-import React from "react";
+import React from 'react';
 
 export const ProjectAppendDialog = () => {
-    const loadProjectList = () => {
+  const loadProjectList = () => {};
 
-    }
+  const onProjectSelect = () => {};
 
-    const onProjectSelect = () => {
-
-    }
-
-    const onProjectAppendButtonClick = () => {
-        //알림 전송
-    }
-}
+  const onProjectAppendButtonClick = () => {
+    //알림 전송
+  };
+};
 
 export default ProjectAppendDialog;

@@ -1,18 +1,9 @@
-import React from "react";
+import React from 'react';
 
 const ReviewerRetrievePage = () => {
+  const loadNonInvitedReviewerData = () => {};
 
-    const loadNonInvitedReviewerData = () => {
+  const onSelectedReviewerChange = () => {};
 
-    }
-
-    const onSelectedReviewerChange = () => {
-
-    }
-
-    const onInviteButtonClick = () => {
-
-    }
-
-
-}
+  const onInviteButtonClick = () => {};
+};

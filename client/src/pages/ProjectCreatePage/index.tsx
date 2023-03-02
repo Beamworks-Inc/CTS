@@ -1,10 +1,10 @@
-import React from "react";
-import {Button} from "@mui/material";
-export interface FormComponent{
-    type: string;
-    name: string;
-    value: string[];
-    currentValue: string | null;
+import React from 'react';
+import { Button } from '@mui/material';
+export interface FormComponent {
+  type: string;
+  name: string;
+  value: string[];
+  currentValue: string | null;
 }
 /**
  * 사용자는 새로운 Selector를 만들 수 있다.
@@ -16,7 +16,7 @@ export interface FormComponent{
  * @constructor
  */
 function FormatSelector() {
-    return null;
+  return null;
 }
 
 /**
@@ -31,7 +31,7 @@ function FormatSelector() {
  *      - original1_1.jpg
  *      - original1_2.jpg
  *      - original1_3.jpg
-*       - ...
+ *       - ...
  *  - original2
  *      - original2_1.jpg
  *      - original2_2.jpg
@@ -56,30 +56,25 @@ function FormatSelector() {
  * @constructor
  */
 function DataUploader() {
-    return (<div>
-        <input type="file" accept=".zip"/>
-        <input type="file" accept=".zip"/>
-    </div>);
+  return (
+    <div>
+      <input type="file" accept=".zip" />
+      <input type="file" accept=".zip" />
+    </div>
+  );
 }
 
 const ProjectCreatePage = () => {
-    const onProjectNameTextChange = () => {
+  const onProjectNameTextChange = () => {};
+  const onProjectDescriptionTextChange = () => {};
+  const onProjectCreateButtonClick = () => {};
 
-    }
-    const onProjectDescriptionTextChange = () => {
-
-    }
-    const onProjectCreateButtonClick = () => {
-
-    }
-
-
-    return (
-        <div>
-            <DataUploader/>
-            <FormatSelector/>
-            <Button onClick={onProjectCreateButtonClick}>프로젝트 생성</Button>
-        </div>
-    )
-}
+  return (
+    <div>
+      <DataUploader />
+      <FormatSelector />
+      <Button onClick={onProjectCreateButtonClick}>프로젝트 생성</Button>
+    </div>
+  );
+};
 export default ProjectCreatePage;

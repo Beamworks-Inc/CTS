@@ -1,15 +1,8 @@
-import React from "react";
+import React from 'react';
 
 const ProjectApprovePage = () => {
-    const onApproveButtonClick = () => {
+  const onApproveButtonClick = () => {};
+  const loadApproveData = () => {};
 
-    }
-    const loadApproveData = () => {
-
-    }
-
-    return (
-        <>
-        </>
-    )
-}
+  return <></>;
+};

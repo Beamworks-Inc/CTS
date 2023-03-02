@@ -1,13 +1,6 @@
-import React from "react";
-const ReviewerInfoInputPage=()=>{
+import React from 'react';
+const ReviewerInfoInputPage = () => {
+  const onReviewerInfoSubmit = () => {};
 
-    const onReviewerInfoSubmit=()=>{
-
-    }
-
-
-    return (
-        <>
-        </>
-    )
-}
+  return <></>;
+};

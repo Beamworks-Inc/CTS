@@ -1,31 +1,18 @@
-import React from "react";
-import {FormComponent} from "../ProjectCreatePage";
-
+import React from 'react';
+import { FormComponent } from '../ProjectCreatePage';
 
 const ReviewPage = () => {
-    const loadReviewData = () => {
+  const loadReviewData = () => {};
 
-    }
+  const loadReviewForm = () => {};
 
-    const loadReviewForm = () => {
+  const onReviewButtonClick = () => {};
 
-    }
+  const isLastReview = () => {};
 
-    const onReviewButtonClick = () => {
+  const moveToFinalReviewPage = () => {};
 
-    }
-
-    const isLastReview = () => {
-
-    }
-
-    const moveToFinalReviewPage = () => {
-
-    }
-
-    const moveToNextReviewPage = () => {
-
-    }
-}
+  const moveToNextReviewPage = () => {};
+};
 
 export default ReviewPage;

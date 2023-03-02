@@ -1,13 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const ReviewerProjectListPage = () => {
+  const onProjectSelect = () => {};
 
-    const onProjectSelect = () => {
-
-    }
-
-    return (
-        <>
-        </>
-    )
-}
+  return <></>;
+};
