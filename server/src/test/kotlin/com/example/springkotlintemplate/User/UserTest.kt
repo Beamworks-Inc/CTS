@@ -37,7 +37,18 @@ class UserTest{
     }
 
     @Test
-    fun `사용자 등록 후 로그인 가능`() {
+    fun `회원가입 요청 형식이 잘못된 경우 400 코드 반환`(){
+        val userJson="{\"email\":\"email@email.com\"}"
+        mockMvc.post("/register"){
+            contentType = MediaType.APPLICATION_JSON
+            content = userJson
+        }.andExpect {
+            status { isBadRequest() }
+        }
+    }
+
+    @Test
+    fun `회원가입 후 로그인 가능`() {
         //given
         val user= UserDTO("email@email.com", "password", Role.PI)
         //when
@@ -53,7 +64,7 @@ class UserTest{
     }
 
     @Test
-    fun `이미 사용자가 존재하는 경우 400 코드 및 메시지 반환`(){
+    fun `이미 사용자가 존재하는데 회원가입을 한 경우 400 코드 및 메시지 반환`(){
         //given
         val user= UserDTO("email@email.com", "password", Role.PI)
         //when
