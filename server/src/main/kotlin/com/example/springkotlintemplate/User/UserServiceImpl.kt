@@ -12,6 +12,6 @@ class UserServiceImpl(
         if(userRepository.findByEmail(user.email) != null){
             throw UserAlreadyExistException()
         }
-        userRepository.save(User(null, user.email, passwordEncoder.encode(user.password), user.role))
+        userRepository.save(User(user.email, passwordEncoder.encode(user.password), user.role))
     }
 }
