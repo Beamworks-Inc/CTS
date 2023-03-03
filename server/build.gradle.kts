@@ -23,6 +23,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("com.h2database:h2:2.1.214")
     testImplementation("org.springframework.restdocs:spring-restdocs-asciidoctor:2.0.6.RELEASE")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc:2.0.6.RELEASE")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
