@@ -10,7 +10,7 @@ class UserServiceImpl(
 ): UserService {
     override fun registerUser(user: UserDTO) {
         if(userRepository.findByEmail(user.email) != null){
-            throw Exception("User already exists")
+            throw UserAlreadyExistException()
         }
         userRepository.save(User(null, user.email, passwordEncoder.encode(user.password), user.role))
     }
