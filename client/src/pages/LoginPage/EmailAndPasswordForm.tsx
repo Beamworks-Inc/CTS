@@ -98,7 +98,7 @@ const EmailAndPassword = () => {
       .catch((err: AxiosError) => {
         // TODO: 얼럿트 대신 컴포넌트 사용!
         console.log(err);
-        alert('실패', err.message);
+        alert(err.message);
         setEmail('');
         setPassword('');
         setErrors({ ...errors, submit: '유효한 아이디와 비밀번호를 입력해주세요.' });

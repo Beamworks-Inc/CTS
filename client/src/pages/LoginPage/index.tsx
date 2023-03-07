@@ -1,4 +1,4 @@
-import { Grid, Stack, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import EmailAndPasswordForm from './EmailAndPasswordForm';
 import LoginHeader from './LoginHeader';
 
