@@ -1,7 +1,12 @@
-import { RegisterForm, User } from '../../Interface/User';
+import { BasicRegisterForm, RegisterForm, ReviewerRegisterForm, User } from '../../Interface/User';
 import axios, { AxiosResponse } from 'axios';
 
-export const register: (data: RegisterForm) => Promise<AxiosResponse<User, any>> = (data: RegisterForm) => {
-  //TODO: Implement register API
-  return axios.post<User>('http://localhost:8080/register', data);
+const defaultUrl="/api/spring";
+
+const registerAPI = {
+  pi: (data: BasicRegisterForm,url=defaultUrl) => axios.post(url+'/register/pi', data),
+  researcher: (data: BasicRegisterForm,url=defaultUrl) => axios.post(url+'/register/researcher', data),
+  reviewer: (data: ReviewerRegisterForm,url=defaultUrl) => axios.post(url+'/register/reviewer', data),
 };
+
+export default registerAPI;

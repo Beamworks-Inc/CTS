@@ -4,7 +4,7 @@ import { LoginForm, User } from 'Interface/User';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validateEmail } from './EmailInput';
-import { register } from './RegisterAPI';
+import { registerAPI } from './RegisterAPI';
 import { SubmitButtonProps } from './RegisterTypes';
 import { validatePassword } from './PasswordInput';
 import { validatePasswordConfirm } from './PasswordConfirmInput';

@@ -14,6 +14,19 @@ export interface LoginForm {
     password: string;
   };
 }
+/**
+ * BasicRegisterForm는 PI와 Researcher가 등록할 때 사용한다.
+ */
+export interface BasicRegisterForm {
+  email: string;
+  password: string;
+}
+export interface ReviewerRegisterForm extends BasicRegisterForm {
+  info:{
+    isRadiologist: 'yes'|'no'|'trainee';
+    hasMoreThan3YearsOfExperience: boolean;
+  }
+}
 
 export interface RegisterForm {
   email: string;
