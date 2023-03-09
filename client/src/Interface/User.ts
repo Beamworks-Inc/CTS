@@ -1,18 +1,33 @@
-import { FormComponent } from '../pages/ProjectCreatePage';
+import { FormComponent } from 'pages/ProjectCreatePage';
 
 export type Role = 'PI' | 'REVIEWER' | 'RESEARCHER';
+export type RadioligistOption = 'yes' | 'no' | 'trainee';
 
-export interface LoginForm {
-  auth: {
-    username: string,
-    password: string
-  }
+export type ReviewerRoleOption = {
+  isRadiologist: RadioligistOption;
+  hasMoreThan3YearsOfExperience: boolean;
+};
+
+export interface LoginUserInfo {
+  username: string;
+  password: string;
 }
-
+export interface LoginForm {
+  auth: LoginUserInfo;
+}
+/**
+ * RegisterForm는 PI와 Researcher가 등록할 때 사용한다.
+ */
 export interface RegisterForm {
   email: string;
   password: string;
+}
+export interface ReviewerRegisterForm extends RegisterForm {
+  info?: ReviewerRoleOption;
+}
+export interface RegisterUserInfo extends ReviewerRegisterForm {
   role: Role;
+  passwordConfirm: string;
 }
 
 export interface User {
