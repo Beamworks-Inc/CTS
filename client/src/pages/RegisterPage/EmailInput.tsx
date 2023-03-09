@@ -24,38 +24,43 @@ export function validateEmail(value: string): string {
   }
 }
 
-export default function EmailInput(props: EmailInputProps): JSX.Element {
-  const { email, setEmail, errors, setErrors } = props;
+export default React.memo(
+  function EmailInput(props: EmailInputProps): JSX.Element {
+    const { email, setEmail, errors, setErrors } = props;
 
-  const handleEmailInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-    const emailError = validateEmail(event.target.value);
-    setErrors({ ...errors, email: emailError });
-  };
+    const handleEmailInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setEmail(event.target.value);
+      const emailError = validateEmail(event.target.value);
+      setErrors({ ...errors, email: emailError });
+    };
 
-  const handleEmailInputKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (errors.submit !== '') setErrors({ ...errors, submit: '' });
-  };
+    const handleEmailInputKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (errors.submit !== '') setErrors({ ...errors, submit: '' });
+    };
 
-  return (
-    <Stack spacing={1}>
-      <InputLabel htmlFor="email-login">이메일 주소</InputLabel>
-      <OutlinedInput
-        id="email-login"
-        name="email"
-        type="email"
-        value={email}
-        onChange={handleEmailInputChange}
-        onKeyDown={handleEmailInputKeyDown}
-        placeholder="이메일 주소를 입력하세요."
-        fullWidth
-        error={Boolean(errors.email)}
-      />
-      {Boolean(errors.email) && (
-        <FormHelperText error id="standard-weight-helper-text-email-login">
-          {errors.email}
-        </FormHelperText>
-      )}
-    </Stack>
-  );
-}
+    return (
+      <Stack spacing={1}>
+        <InputLabel htmlFor="email-login">이메일 주소</InputLabel>
+        <OutlinedInput
+          id="email-login"
+          name="email"
+          type="email"
+          value={email}
+          onChange={handleEmailInputChange}
+          onKeyDown={handleEmailInputKeyDown}
+          placeholder="이메일 주소를 입력하세요."
+          fullWidth
+          error={Boolean(errors.email)}
+        />
+        {Boolean(errors.email) && (
+          <FormHelperText error id="standard-weight-helper-text-email-login">
+            {errors.email}
+          </FormHelperText>
+        )}
+      </Stack>
+    );
+  },
+  (prevProps, nextProps) => {
+    return prevProps.email === nextProps.email && prevProps.errors.email === nextProps.errors.email;
+  },
+);
