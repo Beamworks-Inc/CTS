@@ -1,10 +1,10 @@
 import { FormComponent } from 'pages/ProjectCreatePage';
 
 export type Role = 'PI' | 'REVIEWER' | 'RESEARCHER';
-export type Experience = 'More than 3 years' | 'Less than 3 years' | 'Trainee';
+export type RadioligistOption = 'yes' | 'no' | 'trainee';
 
 export type ReviewerRoleOption = {
-  isRadiologist: 'yes' | 'no' | 'trainee';
+  isRadiologist: RadioligistOption;
   hasMoreThan3YearsOfExperience: boolean;
 };
 

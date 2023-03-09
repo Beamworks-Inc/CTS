@@ -33,13 +33,13 @@ export type PasswordConfirmInputProps = {
 export type RoleSelectProps = {
   role: Role;
   setRole: React.Dispatch<React.SetStateAction<Role>>;
-  roleOption: ReviewerRoleOption;
-  setRoleOption: React.Dispatch<React.SetStateAction<ReviewerRoleOption>>;
+  reviewerRoleOption: ReviewerRoleOption;
+  setReviewerRoleOption: React.Dispatch<React.SetStateAction<ReviewerRoleOption>>;
 };
 
 export type SubmitButtonProps = {
   registerUserInfo: RegisterUserInfo;
-  clearEmailAndPassword: () => void;
+  clearStates: () => void;
   errors: RegisterErrors;
   setErrors: React.Dispatch<React.SetStateAction<RegisterErrors>>;
 };

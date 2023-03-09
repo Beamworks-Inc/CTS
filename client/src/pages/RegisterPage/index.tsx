@@ -4,7 +4,7 @@ import RegisterHeader from './RegisterHeader';
 import React from 'react';
 import PasswordInput from './PasswordInput';
 import SubmitButton from './SubmitButton';
-import { Role, ReviewerRoleOption } from 'Interface/User';
+import { Role, ReviewerRoleOption, RadioligistOption } from 'Interface/User';
 import PasswordConfirmInput from './PasswordConfirmInput';
 import RoleSelect from './RoleSelect';
 
@@ -17,21 +17,26 @@ const RegisterPage = () => {
     submit: '',
   };
 
+  const INIT_REVIEWER_OPTION = {
+    isRadiologist: 'yes' as RadioligistOption,
+    hasMoreThan3YearsOfExperience: false,
+  };
+
   // states
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [passwordConfirm, setPasswordConfirm] = React.useState('');
   const [role, setRole] = React.useState<Role>('PI');
-  const [roleOption, setRoleOption] = React.useState<ReviewerRoleOption>({
-    isRadiologist: 'yes',
-    hasMoreThan3YearsOfExperience: false,
-  });
+  const [reviewerRoleOption, setReviewerRoleOption] = React.useState<ReviewerRoleOption>(INIT_REVIEWER_OPTION);
   const [errors, setErrors] = React.useState(INIT_ERRORS_STATE);
 
   // functions
-  const clearEmailAndPassword = () => {
+  const clearStates = () => {
     setEmail('');
     setPassword('');
+    setPasswordConfirm('');
+    setRole('PI');
+    setReviewerRoleOption({ isRadiologist: 'yes', hasMoreThan3YearsOfExperience: false });
   };
 
   return (
@@ -63,12 +68,17 @@ const RegisterPage = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            <RoleSelect role={role} setRole={setRole} roleOption={roleOption} setRoleOption={setRoleOption} />
+            <RoleSelect
+              role={role}
+              setRole={setRole}
+              reviewerRoleOption={reviewerRoleOption}
+              setReviewerRoleOption={setReviewerRoleOption}
+            />
           </Grid>
           <Grid item xs={12}>
             <SubmitButton
-              registerUserInfo={{ email, password, passwordConfirm, role, info: roleOption }}
-              clearEmailAndPassword={clearEmailAndPassword}
+              registerUserInfo={{ email, password, passwordConfirm, role, info: reviewerRoleOption }}
+              clearStates={clearStates}
               errors={errors}
               setErrors={setErrors}
             />

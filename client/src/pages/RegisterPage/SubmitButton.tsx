@@ -10,15 +10,15 @@ import { validatePassword } from './PasswordInput';
 import { validatePasswordConfirm } from './PasswordConfirmInput';
 
 const requestRegister = (registerUserInfo: RegisterUserInfo) => {
-  const { email, password, role, info } = registerUserInfo;
+  const { email, password, role, info: reviewerRoleOption } = registerUserInfo;
   const registerForm: RegisterForm = { email, password };
-  const reviewerRegisterForm: ReviewerRegisterForm = { email, password, info };
+  const reviewerRegisterForm: ReviewerRegisterForm = { email, password, info: reviewerRoleOption };
 
   if (role === 'PI') {
     return registerAPI.pi(registerForm);
   } else if (role === 'REVIEWER') {
     // TODO: 언제 throw Error 할지, 언제 return 할지 기준알아보기
-    if (info === undefined) throw Error('info is undefiened');
+    if (reviewerRoleOption === undefined) throw Error('info is undefiened');
     return registerAPI.reviewer(reviewerRegisterForm);
   } else if (role === 'RESEARCHER') {
     return registerAPI.researcher(registerForm);
@@ -28,13 +28,13 @@ const requestRegister = (registerUserInfo: RegisterUserInfo) => {
 };
 
 export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
-  const { registerUserInfo, clearEmailAndPassword, errors, setErrors } = props;
+  const { registerUserInfo, clearStates, errors, setErrors } = props;
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const { email, password, passwordConfirm } = registerUserInfo;
 
   const navigate = useNavigate();
 
-  const handleLoginButtonClick = () => {
+  const handleRegisterButtonClick = () => {
     const emailError = validateEmail(email);
     const passwordError = validatePassword(password);
     const passwordConfirmError = validatePasswordConfirm(password, passwordConfirm);
@@ -47,9 +47,14 @@ export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
     requestRegister(registerUserInfo)
       .then((res: AxiosResponse) => {
         alert('회원가입 성공!');
+        setIsSubmitting(false);
+        navigate('/project-list');
       })
       .catch((err: AxiosError) => {
         alert(err.message);
+        clearStates();
+        setErrors({ ...errors, submit: '올바른 정보를 입력해주세요.' });
+        setIsSubmitting(false);
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -73,7 +78,7 @@ export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
           type="submit"
           variant="contained"
           color="primary"
-          onClick={handleLoginButtonClick}
+          onClick={handleRegisterButtonClick}
         >
           Register
         </Button>

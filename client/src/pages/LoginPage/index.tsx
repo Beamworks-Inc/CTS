@@ -39,8 +39,7 @@ const LoginPage = () => {
           </Grid>
           <Grid item xs={12}>
             <SubmitButton
-              email={email}
-              password={password}
+              loginUserInfo={{ username: email, password }}
               clearEmailAndPassword={clearEmailAndPassword}
               errors={errors}
               setErrors={setErrors}
