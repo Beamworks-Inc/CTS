@@ -1,3 +1,5 @@
+import { LoginUserInfo } from 'Interface/User';
+
 type LoginErrors = {
   email: string;
   password: string;
@@ -19,8 +21,7 @@ export type PasswordInputProps = {
 };
 
 export type SubmitButtonProps = {
-  email: string;
-  password: string;
+  loginUserInfo: LoginUserInfo;
   clearEmailAndPassword: () => void;
   errors: LoginErrors;
   setErrors: React.Dispatch<React.SetStateAction<LoginErrors>>;

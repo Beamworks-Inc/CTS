@@ -1,17 +1,36 @@
 import { Button, FormHelperText, Grid } from '@mui/material';
 import { AxiosError, AxiosResponse } from 'axios';
-import { LoginForm, User } from 'Interface/User';
+import { RegisterForm, RegisterUserInfo, ReviewerRegisterForm } from 'Interface/User';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { validateEmail } from './EmailInput';
-import { registerAPI } from './RegisterAPI';
+import registerAPI from './RegisterAPI';
 import { SubmitButtonProps } from './RegisterTypes';
 import { validatePassword } from './PasswordInput';
 import { validatePasswordConfirm } from './PasswordConfirmInput';
 
+const requestRegister = (registerUserInfo: RegisterUserInfo) => {
+  const { email, password, role, info } = registerUserInfo;
+  const registerForm: RegisterForm = { email, password };
+  const reviewerRegisterForm: ReviewerRegisterForm = { email, password, info };
+
+  if (role === 'PI') {
+    return registerAPI.pi(registerForm);
+  } else if (role === 'REVIEWER') {
+    // TODO: 언제 throw Error 할지, 언제 return 할지 기준알아보기
+    if (info === undefined) throw Error('info is undefiened');
+    return registerAPI.reviewer(reviewerRegisterForm);
+  } else if (role === 'RESEARCHER') {
+    return registerAPI.researcher(registerForm);
+  } else {
+    throw Error('role is not valid');
+  }
+};
+
 export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
-  const { email, password, passwordConfirm, clearEmailAndPassword, errors, setErrors } = props;
+  const { registerUserInfo, clearEmailAndPassword, errors, setErrors } = props;
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const { email, password, passwordConfirm } = registerUserInfo;
 
   const navigate = useNavigate();
 
@@ -25,29 +44,16 @@ export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
     }
 
     setIsSubmitting(true);
-    const loginForm: LoginForm = {
-      auth: {
-        username: email,
-        password: password,
-      },
-    };
-
-    // login(loginForm)
-    //   .then((res: AxiosResponse<User>) => {
-    //     // TODO: res.data(User)를 state에 저장 해두어야함.
-    //     console.log('로그인성공', res.data);
-    //     alert('로그인성공!');
-    //     setIsSubmitting(false);
-    //     navigate('/project-list');
-    //   })
-    //   .catch((err: AxiosError) => {
-    //     // TODO: 얼럿트 대신 컴포넌트 사용!
-    //     console.log(err);
-    //     alert(err.message);
-    //     clearEmailAndPassword();
-    //     setErrors({ ...errors, submit: '유효한 아이디와 비밀번호를 입력해주세요.' });
-    //     setIsSubmitting(false);
-    //   });
+    requestRegister(registerUserInfo)
+      .then((res: AxiosResponse) => {
+        alert('회원가입 성공!');
+      })
+      .catch((err: AxiosError) => {
+        alert(err.message);
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
   };
 
   return (

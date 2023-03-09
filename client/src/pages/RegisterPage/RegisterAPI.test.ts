@@ -10,7 +10,7 @@ const defaultURL = 'http://platform.beamworks.co.kr/spring';
 describe('RegisterAPI', () => {
   it('register pi', async () => {
     const mockPI: BasicRegisterForm = {
-      email: 'pi1@test.com',
+      email: 'pi2@test.com',
       password: 'passowrd',
     };
 
@@ -20,7 +20,7 @@ describe('RegisterAPI', () => {
 
   it('register researcher', async () => {
     const mockResearcher: BasicRegisterForm = {
-      email: 'researcher1@test.com',
+      email: 'researcher2@test.com',
       password: 'passowrd',
     };
     const result = await RegisterAPI.researcher(mockResearcher, defaultURL);
@@ -29,7 +29,7 @@ describe('RegisterAPI', () => {
 
   it('register reviewer', async () => {
     const mockReviewer: ReviewerRegisterForm = {
-      email: 'reviewer1@test.com',
+      email: 'reviewer2@test.com',
       password: 'passowrd',
       info: {
         isRadiologist: 'no',

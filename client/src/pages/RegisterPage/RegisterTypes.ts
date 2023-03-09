@@ -1,4 +1,4 @@
-import { Role, RoleOption } from 'Interface/User';
+import { RegisterUserInfo, Role, ReviewerRoleOption } from 'Interface/User';
 
 type RegisterErrors = {
   email: string;
@@ -33,14 +33,12 @@ export type PasswordConfirmInputProps = {
 export type RoleSelectProps = {
   role: Role;
   setRole: React.Dispatch<React.SetStateAction<Role>>;
-  roleOption: RoleOption;
-  setRoleOption: React.Dispatch<React.SetStateAction<RoleOption>>;
+  roleOption: ReviewerRoleOption;
+  setRoleOption: React.Dispatch<React.SetStateAction<ReviewerRoleOption>>;
 };
 
 export type SubmitButtonProps = {
-  email: string;
-  password: string;
-  passwordConfirm: string;
+  registerUserInfo: RegisterUserInfo;
   clearEmailAndPassword: () => void;
   errors: RegisterErrors;
   setErrors: React.Dispatch<React.SetStateAction<RegisterErrors>>;

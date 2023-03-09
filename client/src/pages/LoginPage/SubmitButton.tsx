@@ -9,13 +9,14 @@ import { SubmitButtonProps } from './LoginTypes';
 import { validatePassword } from './PasswordInput';
 
 export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
-  const { email, password, clearEmailAndPassword, errors, setErrors } = props;
+  const { loginUserInfo, clearEmailAndPassword, errors, setErrors } = props;
+  const { username, password } = loginUserInfo;
   const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const navigate = useNavigate();
 
   const handleLoginButtonClick = () => {
-    const emailError = validateEmail(email);
+    const emailError = validateEmail(username);
     const passwordError = validatePassword(password);
     if (Boolean(emailError || passwordError)) {
       setErrors({ ...errors, email: emailError, password: passwordError });
@@ -23,12 +24,7 @@ export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
     }
 
     setIsSubmitting(true);
-    const loginForm: LoginForm = {
-      auth: {
-        username: email,
-        password: password,
-      },
-    };
+    const loginForm: LoginForm = { auth: { username, password } };
 
     login(loginForm)
       .then((res: AxiosResponse<User>) => {
