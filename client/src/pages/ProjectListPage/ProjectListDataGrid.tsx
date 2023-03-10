@@ -1,22 +1,13 @@
-import {
-  Avatar,
-  Grid,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-} from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { ProjectListItem } from './ProjectListTypes';
+import { ProjectListDataGridProps, ProjectListItem } from './ProjectListTypes';
 
 const CONSTS = {
   DEFAULT_NO_PI: 'NO PI YET',
 };
 
-export default function ProjectListDataGrid() {
+export default function ProjectListDataGrid(props: ProjectListDataGridProps) {
+  const { data } = props; // TODO: Test.
   const rows: Array<ProjectListItem> = [
     {
       id: 1,
@@ -131,19 +122,4 @@ export default function ProjectListDataGrid() {
       </Table>
     </TableContainer>
   );
-}
-
-{
-  /* <TableCell>
-      <Grid container spacing={2} alignItems="center" sx={{ flexWrap: 'nowrap' }}>
-        <Grid item>
-          <Avatar alt="User 1" src={row.avatar} />
-        </Grid>
-        <Grid item xs zeroMinWidth>
-          <Typography align="left" variant="subtitle1">
-            {row.name}
-          </Typography>
-        </Grid>
-      </Grid>
-    </TableCell> */
 }
