@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import DatagridHeader from './DatagridHeader';
 import ProjectListDataGrid from './ProjectListDataGrid';
 import useLoading from 'hooks/useLoading';
+import Loader from 'components/Loader';
 
 const ProjectListPage = () => {
   const loadProjectList = () => {
@@ -13,7 +14,7 @@ const ProjectListPage = () => {
   const [loadingState, fetchData] = useLoading(loadProjectList, []);
   const { loading, error, data } = loadingState;
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader />;
   if (error) navigate('/error');
 
   return (
