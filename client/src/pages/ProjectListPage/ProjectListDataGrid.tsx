@@ -12,20 +12,11 @@ import {
 import { Link } from 'react-router-dom';
 import { ProjectListItem } from './ProjectListTypes';
 
-// type ProjectListItem = {
-//   id: number;
-//   name: string;
-//   description: string;
-//   researcherName: string;
-//   piName: string;
-//   reviewerNames: string[];
-// };
+const CONSTS = {
+  DEFAULT_NO_PI: 'NO PI YET',
+};
 
 export default function ProjectListDataGrid() {
-  const CONSTS = {
-    DEFAULT_NO_PI: 'NO PI YET',
-  };
-
   const rows: Array<ProjectListItem> = [
     {
       id: 1,
@@ -75,9 +66,7 @@ export default function ProjectListDataGrid() {
       <Table sx={{ minWidth: 560 }}>
         <TableHead>
           <TableRow>
-            <TableCell width="1" align="center">
-              Id
-            </TableCell>
+            <TableCell width="1">Id</TableCell>
             <TableCell>Description</TableCell>
             <TableCell>Researcher</TableCell>
             <TableCell>PI</TableCell>
@@ -87,9 +76,12 @@ export default function ProjectListDataGrid() {
         <TableBody>
           {rows.map((row, index) => (
             <TableRow hover key={index}>
+              {/* Id */}
               <TableCell align="center">
                 <Typography variant="subtitle1">{row.id}</Typography>
               </TableCell>
+
+              {/* Description */}
               <TableCell>
                 <Typography align="left" variant="subtitle1">
                   <Link to={`/${row.id}`}>{row.name}</Link>
@@ -98,6 +90,8 @@ export default function ProjectListDataGrid() {
                   {row.description}
                 </Typography>
               </TableCell>
+
+              {/* Researcher */}
               <TableCell>
                 <Typography align="left" variant="subtitle1">
                   {row.researcher.name}
@@ -106,6 +100,8 @@ export default function ProjectListDataGrid() {
                   {row.researcher.email}
                 </Typography>
               </TableCell>
+
+              {/* PI */}
               <TableCell>
                 {row.pi !== null ? (
                   <>
@@ -122,6 +118,8 @@ export default function ProjectListDataGrid() {
                   </Typography>
                 )}
               </TableCell>
+
+              {/* Reviewers */}
               <TableCell>
                 <Typography align="left" variant="caption">
                   {row.reviewer.map(reviewer => reviewer.name).join(', ')}
