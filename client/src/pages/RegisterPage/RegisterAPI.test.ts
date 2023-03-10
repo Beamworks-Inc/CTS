@@ -1,4 +1,4 @@
-import { BasicRegisterForm, ReviewerRegisterForm } from 'Interface/User';
+import { RegisterForm, ReviewerRegisterForm } from 'Interface/User';
 import RegisterAPI from './RegisterAPI';
 /**
  * 이메일은 유일해야하기 떄문에
@@ -9,7 +9,7 @@ const defaultURL = 'http://platform.beamworks.co.kr/spring';
 
 describe('RegisterAPI', () => {
   it('register pi', async () => {
-    const mockPI: BasicRegisterForm = {
+    const mockPI: RegisterForm = {
       email: 'pi2@test.com',
       password: 'passowrd',
     };
@@ -19,7 +19,7 @@ describe('RegisterAPI', () => {
   });
 
   it('register researcher', async () => {
-    const mockResearcher: BasicRegisterForm = {
+    const mockResearcher: RegisterForm = {
       email: 'researcher2@test.com',
       password: 'passowrd',
     };

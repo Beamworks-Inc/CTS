@@ -73,7 +73,7 @@ export interface InitProject {
 export interface Project extends InitProject {
   id: number;
   pi: PI | null;
-  researcher: Researcher | null;
+  researcher: Researcher;
   reviewer: Reviewer[];
 }
 
