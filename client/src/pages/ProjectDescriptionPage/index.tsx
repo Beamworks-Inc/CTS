@@ -6,4 +6,7 @@ import React from 'react';
  */
 const ProjectDescriptionPage = () => {
   const onReviewButtonClick = () => {};
+  return <div>Project Description Page</div>;
 };
+
+export default ProjectDescriptionPage;

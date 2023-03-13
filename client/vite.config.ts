@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const SERVER_URI = 'http://platform.beamworks.co.kr';
 
-axios.defaults.withCredentials = false;
+axios.defaults.withCredentials = true;
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
 // https://vitejs.dev/config/

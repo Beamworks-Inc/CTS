@@ -33,7 +33,6 @@ export interface RegisterUserInfo extends ReviewerRegisterForm {
 export interface User {
   id: number;
   email: string;
-  name: string;
   role: Role;
 }
 
@@ -66,15 +65,15 @@ export interface Data {
 export interface InitProject {
   name: string;
   description: string;
-  data: Data[];
+  reviewData: Data[];
   form: FormComponent;
 }
 
 export interface Project extends InitProject {
   id: number;
   pi: PI | null;
-  researcher: Researcher | null;
-  reviewer: Reviewer[];
+  researcher: Researcher;
+  reviewers: Reviewer[];
 }
 
 export interface Alarm {

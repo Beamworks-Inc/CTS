@@ -1,15 +1,36 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import MainLayout from 'layout';
 import LoginPage from 'pages/LoginPage';
 import RegisterPage from 'pages/RegisterPage';
+import ProjectListPage from 'pages/ProjectListPage';
+import ProjectCreatePage from 'pages/ProjectCreatePage';
+import ProjectDescriptionPage from 'pages/ProjectDescriptionPage';
+
+const EZRouting = () => {
+  const paths = ['/', '/login', '/register', '/project/list', '/project/create', '/project/1', 'error'];
+  return (
+    <>
+      <h1>Easy Routing!</h1>
+      {paths.map(path => (
+        <h1>
+          <Link to={path}>{path}</Link>
+        </h1>
+      ))}
+    </>
+  );
+};
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<MainLayout />}>
+          <Route path="/" element={<EZRouting />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/project/list" element={<ProjectListPage />} />
+          <Route path="/project/create" element={<ProjectCreatePage />} />
+          <Route path="/project/:projectId" element={<ProjectDescriptionPage />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Route>
       </Routes>
