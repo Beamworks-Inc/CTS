@@ -1,4 +1,5 @@
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+import { Container } from '@mui/system';
 import { Link } from 'react-router-dom';
 import { ProjectListDataGridProps, ProjectListItem } from './ProjectListTypes';
 
@@ -6,52 +7,18 @@ const CONSTS = {
   DEFAULT_NO_PI: 'NO PI YET',
 };
 
-export default function ProjectListDataGrid(props: ProjectListDataGridProps) {
-  const { data } = props; // TODO: Test.
-  const rows: Array<ProjectListItem> = [
-    {
-      id: 1,
-      name: 'Project 1',
-      description: 'This is a description of project 1',
-      pi: {
-        id: 1,
-        name: 'PI 1',
-        email: 'pi@gmail.com',
-        role: 'PI',
-        projectIds: [1, 2, 3],
-      },
-      researcher: {
-        id: 2,
-        name: 'RESEARCHER 1',
-        email: 'researcher@gmail.com',
-        role: 'RESEARCHER',
-        projectIds: [1, 2, 3],
-      },
-      reviewer: [
-        {
-          id: 3,
-          name: 'REVIEWER 1',
-          email: 'reviewer@gmail.com',
-          role: 'REVIEWER',
-          info: {
-            isRadiologist: 'Yes',
-            hasMoreThan3YearsOfExperience: true,
-          },
-        },
-        {
-          id: 3,
-          name: 'REVIEWER 1',
-          email: 'reviewer@gmail.com',
-          role: 'REVIEWER',
-          info: {
-            isRadiologist: 'Yes',
-            hasMoreThan3YearsOfExperience: true,
-          },
-        },
-      ],
-    },
-  ];
+function NoData() {
+  return (
+    <TableRow>
+      <TableCell colSpan={6} align="center">
+        No Data
+      </TableCell>
+    </TableRow>
+  );
+}
 
+export default function ProjectListDataGrid(props: ProjectListDataGridProps) {
+  const { data } = props;
   return (
     <TableContainer>
       <Table sx={{ minWidth: 560 }}>
@@ -65,59 +32,63 @@ export default function ProjectListDataGrid(props: ProjectListDataGridProps) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row, index) => (
-            <TableRow hover key={index}>
-              {/* Id */}
-              <TableCell align="center">
-                <Typography variant="subtitle1">{row.id}</Typography>
-              </TableCell>
+          {data.length > 0 ? (
+            data.map((row, index) => (
+              <TableRow hover key={index}>
+                {/* Id */}
+                <TableCell align="center">
+                  <Typography variant="subtitle1">{row.id}</Typography>
+                </TableCell>
 
-              {/* Description */}
-              <TableCell>
-                <Typography align="left" variant="subtitle1">
-                  <Link to={`${row.id}`}>{row.name}</Link>
-                </Typography>
-                <Typography align="left" variant="caption" color="secondary">
-                  {row.description}
-                </Typography>
-              </TableCell>
-
-              {/* Researcher */}
-              <TableCell>
-                <Typography align="left" variant="subtitle1">
-                  {row.researcher.name}
-                </Typography>
-                <Typography align="left" variant="caption" color="secondary">
-                  {row.researcher.email}
-                </Typography>
-              </TableCell>
-
-              {/* PI */}
-              <TableCell>
-                {row.pi !== null ? (
-                  <>
-                    <Typography align="left" variant="subtitle1">
-                      {row.pi.name}
-                    </Typography>
-                    <Typography align="left" variant="caption" color="secondary">
-                      {row.pi.email}
-                    </Typography>
-                  </>
-                ) : (
+                {/* Description */}
+                <TableCell>
                   <Typography align="left" variant="subtitle1">
-                    {CONSTS.DEFAULT_NO_PI}
+                    <Link to={`${row.id}`}>{row.name}</Link>
                   </Typography>
-                )}
-              </TableCell>
+                  <Typography align="left" variant="caption" color="secondary">
+                    {row.description}
+                  </Typography>
+                </TableCell>
 
-              {/* Reviewers */}
-              <TableCell>
-                <Typography align="left" variant="caption">
-                  {row.reviewer.map(reviewer => reviewer.name).join(', ')}
-                </Typography>
-              </TableCell>
-            </TableRow>
-          ))}
+                {/* Researcher */}
+                <TableCell>
+                  <Typography align="left" variant="subtitle1">
+                    {row.researcher.name}
+                  </Typography>
+                  <Typography align="left" variant="caption" color="secondary">
+                    {row.researcher.email}
+                  </Typography>
+                </TableCell>
+
+                {/* PI */}
+                <TableCell>
+                  {row.pi !== null ? (
+                    <>
+                      <Typography align="left" variant="subtitle1">
+                        {row.pi.name}
+                      </Typography>
+                      <Typography align="left" variant="caption" color="secondary">
+                        {row.pi.email}
+                      </Typography>
+                    </>
+                  ) : (
+                    <Typography align="left" variant="subtitle1">
+                      {CONSTS.DEFAULT_NO_PI}
+                    </Typography>
+                  )}
+                </TableCell>
+
+                {/* Reviewers */}
+                <TableCell>
+                  <Typography align="left" variant="caption">
+                    {row.reviewer.map(reviewer => reviewer.name).join(', ')}
+                  </Typography>
+                </TableCell>
+              </TableRow>
+            ))
+          ) : (
+            <NoData />
+          )}
         </TableBody>
       </Table>
     </TableContainer>

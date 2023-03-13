@@ -1,26 +1,35 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import DatagridHeader from './DatagridHeader';
 import ProjectListDataGrid from './ProjectListDataGrid';
 import useLoading from 'hooks/useLoading';
 import Loader from 'components/Loader';
-import {getProjects} from "./ProjectListAPI";
+import { getProjects } from './ProjectListAPI';
+import { ProjectListItem } from './ProjectListTypes';
+import { Project } from 'Interface/User';
+
+function convert(data: Project[]): ProjectListItem[] {
+  if (!data) return [];
+  return data.map(project => ({
+    id: project.id,
+    name: project.name,
+    description: project.description,
+    pi: project.pi,
+    researcher: project.researcher,
+    reviewer: project.reviewer,
+  }));
+}
 
 const ProjectListPage = () => {
-  const loadProjectList = () => {
-    return getProjects();
-  };
-
-  const navigate = useNavigate();
-  const [loadingState, fetchData] = useLoading(loadProjectList, []);
+  const [loadingState, fetchData] = useLoading(getProjects, []);
   const { loading, error, data } = loadingState;
 
-  // if (loading) return <Loader />;
-  // if (error) navigate('/error');
+  if (loading) return <Loader />;
+  if (error) return <Navigate to="/error" replace />;
 
   return (
     <DatagridHeader>
-      <ProjectListDataGrid data={data} />
+      <ProjectListDataGrid data={convert(data)} />
     </DatagridHeader>
   );
 };

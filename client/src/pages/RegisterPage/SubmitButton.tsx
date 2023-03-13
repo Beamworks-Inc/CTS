@@ -48,7 +48,7 @@ export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
       .then((res: AxiosResponse) => {
         alert('회원가입 성공!');
         setIsSubmitting(false);
-        navigate('/project-list');
+        navigate('/project/list');
       })
       .catch((err: AxiosError) => {
         alert(err.message);

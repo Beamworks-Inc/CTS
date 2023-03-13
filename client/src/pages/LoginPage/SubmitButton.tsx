@@ -32,7 +32,7 @@ export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
         console.log('로그인성공', res.data);
         alert('로그인성공!');
         setIsSubmitting(false);
-        navigate('/project-list');
+        navigate('/project/list');
       })
       .catch((err: AxiosError) => {
         // TODO: 얼럿트 대신 컴포넌트 사용!

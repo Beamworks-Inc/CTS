@@ -49,11 +49,11 @@ function useLoading(callback: any, deps = []): [LoadingState, () => void] {
   const fetchData = async () => {
     dispatch({ type: 'LOADING' });
     try {
-      const [data] = await callback();
-      console.log('Loading Success', data);
-      dispatch({ type: 'SUCCESS', data });
+      const response = await callback();
+      console.log('Loading Success!', response.data);
+      dispatch({ type: 'SUCCESS', data: response.data });
     } catch (e) {
-      console.log('Loading Error', e);
+      console.log('Loading Error!', e);
       dispatch({ type: 'ERROR', error: e });
     }
   };
