@@ -75,7 +75,7 @@ export default function ProjectListDataGrid(props: ProjectListDataGridProps) {
               {/* Description */}
               <TableCell>
                 <Typography align="left" variant="subtitle1">
-                  <Link to={`/${row.id}`}>{row.name}</Link>
+                  <Link to={`${row.id}`}>{row.name}</Link>
                 </Typography>
                 <Typography align="left" variant="caption" color="secondary">
                   {row.description}

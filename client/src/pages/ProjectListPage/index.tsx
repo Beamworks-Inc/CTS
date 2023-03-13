@@ -14,8 +14,8 @@ const ProjectListPage = () => {
   const [loadingState, fetchData] = useLoading(loadProjectList, []);
   const { loading, error, data } = loadingState;
 
-  if (loading) return <Loader />;
-  if (error) navigate('/error');
+  // if (loading) return <Loader />;
+  // if (error) navigate('/error');
 
   return (
     <DatagridHeader>
