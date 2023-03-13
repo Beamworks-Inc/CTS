@@ -4,10 +4,11 @@ import DatagridHeader from './DatagridHeader';
 import ProjectListDataGrid from './ProjectListDataGrid';
 import useLoading from 'hooks/useLoading';
 import Loader from 'components/Loader';
+import {getProjects} from "./ProjectListAPI";
 
 const ProjectListPage = () => {
   const loadProjectList = () => {
-    // TODO: Project-List 받아오는 API 연결!
+    return getProjects();
   };
 
   const navigate = useNavigate();
