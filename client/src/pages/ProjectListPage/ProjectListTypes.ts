@@ -1,6 +1,6 @@
 import { Project } from 'Interface/User';
 
-type ProjectListItemOmitted = 'data' | 'form';
+type ProjectListItemOmitted = 'reviewData' | 'form';
 export interface ProjectListItem extends Omit<Project, ProjectListItemOmitted> {}
 
 export interface ProjectListDataGridProps {

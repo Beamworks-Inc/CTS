@@ -5,6 +5,7 @@ import { ProjectListDataGridProps, ProjectListItem } from './ProjectListTypes';
 
 const CONSTS = {
   DEFAULT_NO_PI: 'NO PI YET',
+  DEFAULT_NO_REVIEWERS: 'NO REVIEWERS YET',
 };
 
 function NoData() {
@@ -19,6 +20,7 @@ function NoData() {
 
 export default function ProjectListDataGrid(props: ProjectListDataGridProps) {
   const { data } = props;
+  console.log(data);
   return (
     <TableContainer>
       <Table sx={{ minWidth: 560 }}>
@@ -53,35 +55,23 @@ export default function ProjectListDataGrid(props: ProjectListDataGridProps) {
                 {/* Researcher */}
                 <TableCell>
                   <Typography align="left" variant="subtitle1">
-                    {row.researcher.name}
-                  </Typography>
-                  <Typography align="left" variant="caption" color="secondary">
                     {row.researcher.email}
                   </Typography>
                 </TableCell>
 
                 {/* PI */}
                 <TableCell>
-                  {row.pi !== null ? (
-                    <>
-                      <Typography align="left" variant="subtitle1">
-                        {row.pi.name}
-                      </Typography>
-                      <Typography align="left" variant="caption" color="secondary">
-                        {row.pi.email}
-                      </Typography>
-                    </>
-                  ) : (
-                    <Typography align="left" variant="subtitle1">
-                      {CONSTS.DEFAULT_NO_PI}
-                    </Typography>
-                  )}
+                  <Typography align="left" variant="subtitle1">
+                    {row.pi !== null ? row.pi.email : CONSTS.DEFAULT_NO_PI}
+                  </Typography>
                 </TableCell>
 
                 {/* Reviewers */}
                 <TableCell>
                   <Typography align="left" variant="caption">
-                    {row.reviewer.map(reviewer => reviewer.name).join(', ')}
+                    {row.reviewers.length > 0
+                      ? row.reviewers.map(reviewer => reviewer.email).join(', ')
+                      : CONSTS.DEFAULT_NO_REVIEWERS}
                   </Typography>
                 </TableCell>
               </TableRow>

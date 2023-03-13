@@ -16,7 +16,7 @@ function convert(data: Project[]): ProjectListItem[] {
     description: project.description,
     pi: project.pi,
     researcher: project.researcher,
-    reviewer: project.reviewer,
+    reviewers: project.reviewers,
   }));
 }
 
