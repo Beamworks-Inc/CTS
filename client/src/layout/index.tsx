@@ -17,7 +17,7 @@ const Layout = () => {
         <Toolbar />
         <Box sx={{ position: 'relative', minHeight: 'calc(100vh - 110px)', display: 'flex', flexDirection: 'column' }}>
           <Outlet />
-          <Footer />
+          {/* TODO: <Footer /> */}
         </Box>
       </Box>
     </Box>

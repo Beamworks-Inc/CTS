@@ -3,7 +3,7 @@ import Search from './Search';
 import Notification from './Notification';
 import Profile from './Profile';
 
-import { HeaderProps } from './LayoutProps';
+import { HeaderProps } from './LayoutTypes';
 
 export default function Header(props: HeaderProps) {
   const { open, handleDrawerToggle } = props;
