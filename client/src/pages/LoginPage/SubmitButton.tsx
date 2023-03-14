@@ -60,7 +60,7 @@ export default function SubmitButton(props: SubmitButtonProps): JSX.Element {
           size="large"
           type="submit"
           variant="contained"
-          color="primary"
+          color="success"
           onClick={handleLoginButtonClick}
         >
           Login

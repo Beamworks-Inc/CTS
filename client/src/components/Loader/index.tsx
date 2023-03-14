@@ -18,7 +18,7 @@ export interface LoaderProps extends LinearProgressProps {}
 
 const Loader = () => (
   <LoaderWrapper>
-    <LinearProgress color="primary" />
+    <LinearProgress color="success" />
   </LoaderWrapper>
 );
 
