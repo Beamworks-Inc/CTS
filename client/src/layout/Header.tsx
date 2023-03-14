@@ -10,12 +10,18 @@ export default function Header(props: HeaderProps) {
   const HeaderContent = () => {
     return (
       <>
+        {/* 현재 사용하지 않음 */}
         {/* <Search /> */}
+
         <Box sx={{ width: '100%', ml: 1 }} />
-        <Notification />
+
+        {/* 현재 사용하지 않음 - 기획변경 */}
+        {/* <Notification /> */}
+
         {/* TODO: Localization & Dark Theme etc */}
         {/* <Customization />  */}
-        {/* TODO: <Profile /> */}
+
+        <Profile />
       </>
     );
   };
